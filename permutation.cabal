@@ -39,6 +39,9 @@ extra-source-files:  examples/Enumerate.hs
                      tests/Makefile
                      NEWS
 
+custom-setup
+  setup-depends: base == 4.*, Cabal, process
+
 library
     hs-source-dirs:  lib
     exposed-modules: Data.Choose
