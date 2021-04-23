@@ -131,7 +131,7 @@ newListPermute :: (MPermute p m) => Int -> [Int] -> m p
 newListPermute n is = do
     p <- unsafeNewListPermute n is
     valid <- isValid p
-    when (not valid) $ fail "invalid permutation"
+    when (not valid) $ error "invalid permutation"
     return  p
 {-# INLINE newListPermute #-}
 
@@ -214,7 +214,7 @@ setIdentity p = do
 getElem :: (MPermute p m) => p -> Int -> m Int
 getElem p i = do
     n <- getSize p
-    when (i < 0 || i >= n) $ fail "getElem: invalid index"
+    when (i < 0 || i >= n) $ error "getElem: invalid index"
     unsafeGetElem p i
 {-# INLINE getElem #-}
 
@@ -235,7 +235,7 @@ getIndexOf p x =
 setElem :: (MPermute p m) => p -> Int -> Int -> m ()
 setElem p i x = do
     n <- getSize p
-    when (i < 0 || i >= n) $ fail "getElem: invalid index"
+    when (i < 0 || i >= n) $ error "getElem: invalid index"
     unsafeSetElem p i x
 {-# INLINE setElem #-}
 
@@ -244,7 +244,7 @@ setElem p i x = do
 swapElems :: (MPermute p m) => p -> Int -> Int -> m ()
 swapElems p i j = do
     n <- getSize p
-    when (i < 0 || i >= n || j < 0 || j >= n) $ fail "swapElems: invalid index"
+    when (i < 0 || i >= n || j < 0 || j >= n) $ error "swapElems: invalid index"
     unsafeSwapElems p i j
 {-# INLINE swapElems #-}
 
@@ -293,7 +293,7 @@ copyInverse :: (MPermute p m) => p -> p -> m ()
 copyInverse dst src = do
     n  <- getSize src
     n' <- getSize dst
-    when (n /= n') $ fail "permutation size mismatch"
+    when (n /= n') $ error "permutation size mismatch"
     forM_ [0 .. n-1] $ \i -> do
         i' <- unsafeGetElem src i
         unsafeSetElem dst i' i
