@@ -146,7 +146,7 @@ setFirst c = do
 getElem :: (MChoose c m) => c -> Int -> m Int
 getElem c i = do
     k <- getSize c
-    when (i < 0 || i >= k) $ fail "getElem: invalid index"
+    when (i < 0 || i >= k) $ error "getElem: invalid index"
     unsafeGetElem c i
 {-# INLINE getElem #-}
 
@@ -156,7 +156,7 @@ getElem c i = do
 setElem :: (MChoose c m) => c -> Int -> Int -> m ()
 setElem c i x = do
     k <- getSize c
-    when (i < 0 || i >= k) $ fail "getElem: invalid index"
+    when (i < 0 || i >= k) $ error "getElem: invalid index"
     unsafeSetElem c i x
 {-# INLINE setElem #-}
 
