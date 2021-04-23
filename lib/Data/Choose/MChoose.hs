@@ -104,7 +104,7 @@ newListChoose :: (MChoose c m) => Int -> Int -> [Int] -> m c
 newListChoose n k is = do
     c <- unsafeNewListChoose n k is
     valid <- isValid c
-    when (not valid) $ fail "invalid combination"
+    when (not valid) $ error "invalid combination"
     return c
 {-# INLINE newListChoose #-}
 
