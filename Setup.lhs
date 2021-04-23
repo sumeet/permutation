@@ -11,4 +11,3 @@
 >         else return ()
 >
 > main = defaultMainWithHooks simpleUserHooks
->        {runTests=testing}
